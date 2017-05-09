@@ -6,16 +6,17 @@
 
 public class LoginTest {
 	
-	void testLogin(){
+	static void testLogin(){
 		//1. open the browser
 		WebDriver driver;
 		System.setProperty("webdriver.gecko.driver", "D://Soft_installed//eclipse//workspace//the-internet//geckodriver-v0.15.0-win64//geckodriver.exe");
 		driver =new FirefoxDriver();
+		driver.get("https://the-internet.herokuapp.com/");
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		testLogin();
 	}
 
 }
