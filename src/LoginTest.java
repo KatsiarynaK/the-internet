@@ -5,16 +5,21 @@ import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.junit.Test;
 import org.openqa.selenium.By;
 	import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.firefox.FirefoxDriver;
 
+import junit.framework.Assert;
+
 public class LoginTest {
+	
+	static WebDriver driver;
+	
 	
 	static void testLogin() throws AWTException, InterruptedException{
 		//1. open the browser
-		WebDriver driver;
 		System.setProperty("webdriver.gecko.driver", "D://Soft_installed//eclipse//workspace//the-internet//geckodriver-v0.15.0-win64//geckodriver.exe");
 		driver =new FirefoxDriver();
 		driver.get("https://the-internet.herokuapp.com/");
@@ -26,13 +31,16 @@ public class LoginTest {
 		String childWindowHandler = null;
 		Set<String> handles = driver.getWindowHandles();
 		Iterator<String> iter = handles.iterator();
+		
+		System.out.println(driver.getTitle());
 		Thread.sleep(5000);
 		while (iter.hasNext()){
 			childWindowHandler = iter.next();
+			System.out.println(driver.getTitle());
 		}
 		driver.switchTo().window(childWindowHandler);
-		System.out.println(parentWindowHandler);
-		System.out.println(childWindowHandler);
+		System.out.println(driver.getTitle());
+		
 		//type in pop up window
 		Thread.sleep(5000);
 		Robot r = new Robot();
@@ -62,6 +70,19 @@ public class LoginTest {
 		r.delay(5000);
 		r.keyPress(KeyEvent.VK_ENTER);
 		r.keyRelease(KeyEvent.VK_ENTER);
+		System.out.println(driver.getTitle());
+		driver.switchTo().window(parentWindowHandler);
+		r.delay(5000);
+		// check opened page
+		
+		String title = "Congratulations!";
+		checkText(title);
+	}
+	
+	@Test
+	public static void checkText (String text){
+		boolean a= driver.getPageSource().contains(text);
+		Assert.assertTrue(a);
 	}
 	
 	public static void main(String[] args) throws AWTException, InterruptedException {
