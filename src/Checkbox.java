@@ -11,9 +11,14 @@ public class Checkbox {
 		WebDriver driver = new FirefoxDriver();
 		driver.get("https://the-internet.herokuapp.com/");
 		Thread.sleep(5000);
-		// change!!!!
-		WebElement link = driver.findElement(By.id(".//*[@id='content']/ul/li[5]/a"));
+		// CSS locator!!!
+		WebElement link = driver.findElement(By.cssSelector("div#content > ul li:nth-child(5) a"));
 		link.click();
+	}
+	
+	public boolean isDisplayed (By locator){
+		
+		return true;
 	}
 
 }
