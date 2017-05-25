@@ -25,8 +25,19 @@ public class Checkbox {
 		WebElement link = driver.findElement(By.cssSelector("div#content > ul li:nth-child(5) a"));
 		link.click();
 		//check whether check-box is already displayed
-		
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("checkboxes")));
+		WebElement fCheckbox = driver.findElement(By.cssSelector("#checkboxes > input:nth-child(1)"));
+		WebElement sCheckbox = driver.findElement(By.cssSelector("#checkboxes > input:nth-child(3)"));
+
+		if (!fCheckbox.isSelected()){
+			System.out.println("first is not selected");
+			fCheckbox.click();
+		}
+		if (!sCheckbox.isSelected()){
+			System.out.println("second is not selected");
+			sCheckbox.click();
+		}
+		
 		if (isDisplayed(By.id("checkboxes"))){
 			System.out.println("Checkboxes are displayed");
 		}else{
