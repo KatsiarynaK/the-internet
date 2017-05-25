@@ -37,22 +37,8 @@ public class Checkbox {
 			System.out.println("second is not selected");
 			sCheckbox.click();
 		}
-		
-		if (isDisplayed(By.id("checkboxes"))){
-			System.out.println("Checkboxes are displayed");
-		}else{
-			System.out.println("WHF??");
-			// think what can be done in case of failure to find checkbox!!!
-		}
-		Assert.assertEquals(isDisplayed(By.id("checkboxes")), true);
 	}
 	
-	public static boolean isDisplayed (By locator){
-		try{
-			return driver.findElement(locator).isDisplayed();
-		}catch (org.openqa.selenium.NoSuchElementException exception){
-			return false;
-		}
-	}
+
 
 }
